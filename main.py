@@ -15,12 +15,16 @@ data = wine.data
 target = wine.target
 
 # print all the attributes of the dataset
-print(wine.keys())
+print("Wine attributes \n****************************** ")
+for feature_name, feature_data in zip(wine.feature_names, wine.data.T):
+    print(feature_name)
 
 # print all the names of all the classifications (target)
-print(wine.target_names)
+print("\nWine data\n******************************")
+for target_name, target_data in zip(wine.target_names, wine.data.T):
+    print(target_name)
 
-print("\n now we print the numeric data from the zip file \n")
+print("\nNumeric data from the zip file \n***************************************************")
 
 # For each attribute, if it is numeric, print its minimum value, maximum value,
 # and the average value. If it is categorical, print the list of possible values it can take.
@@ -70,7 +74,7 @@ for i in range(len(target)):
 # B. Calculate and print a confusion matrix including a suitable title. For the presentation, use
 # .ConfusionMatrixDisplay
 
-print("\nDecision Trees \n")
+print("\nDecision Trees\n*******************************")
 # Decision Trees
 # create the model
 decisionTreeModel = DecisionTreeClassifier()
@@ -97,7 +101,7 @@ precision = precision_score(target, decisionTreePredict, average='weighted')
 print("precision:", precision)
 
 
-print("\nLogistic Regression \n")
+print("\nLogistic Regression\n************************************************")
 
 # Scale the data
 scaler = StandardScaler()
@@ -126,11 +130,14 @@ print("recall:", recall)
 precision = precision_score(target, logisticRegressionPredict, average='weighted')
 print("precision:", precision)
 
-print("\nK-Nearest Neighbors")
+print("\nK-Nearest Neighbors\n*********************************************")
 # K-Nearest Neighbors
 # create 5 models with k=3,4,5,6,7 and print the results
 for i in range(3, 8):
-    print("\nk=", i)
+    if(i == 3):
+        print("k=", i)
+    else:
+        print("\nk=", i)
     # create the model
     kNeighborsModel = KNeighborsClassifier(n_neighbors=i)
     # train the model
